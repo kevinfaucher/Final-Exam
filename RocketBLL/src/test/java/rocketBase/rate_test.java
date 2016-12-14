@@ -37,7 +37,7 @@ public class rate_test {
 	@Test(expected = RateException.class)
 	public void testRateException() throws Exception {
 		ArrayList<RateDomainModel> rate = RateDAL.getAllRates();
-		int creditScore = 200;
+		int creditScore = 266;
 		try {
 			double rated = RateBLL.getRate(creditScore);
 		} catch (RateException exception) {
