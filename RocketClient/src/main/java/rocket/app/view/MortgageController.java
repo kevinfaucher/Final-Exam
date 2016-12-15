@@ -103,11 +103,11 @@ public class MortgageController {
 
 		// send lq as a message to RocketHub
 		mainApp.messageSend(lq);
-	}
+	} 
 
 	public void HandleLoanRequestDetails(LoanRequest lRequest) {
 
-		double fincRate = lRequest.getdRate();
+		double finance_Rate = lRequest.getdRate();
 		double pmts = lRequest.getdPayment();
 		double PIT1 = lRequest.getiIncome() * .28;
 		double PIT2 = ((lRequest.getiIncome() * .36) - lRequest.getiExpenses());
@@ -118,7 +118,7 @@ public class MortgageController {
 		} else {
 			PIT = PIT1;
 		}
-		if (fincRate == -1) {
+		if (finance_Rate == -1) {
 			lblFinancialPayment1.setText("N/A");
 			lblFinancialRate1.setText("N/A");
 		} else if (pmts > PIT) {
@@ -126,7 +126,7 @@ public class MortgageController {
 			lblFinancialRate1.setText(null);
 			lblFinancialPayment1.setText(null);
 		} else {
-			lblFinancialRate1.setText("Financial Rate: " + fincRate + "%");
+			lblFinancialRate1.setText("Financial Rate: " + finance_Rate + "%");
 			lblFinancialPayment1.setText("Monthly Payment: " + currencyFormat.format(pmts));
 			lblErrors.setText(null);
 		}
