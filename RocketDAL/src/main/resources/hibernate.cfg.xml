@@ -13,4 +13,4 @@
   <property name="hibernate.hbm2ddl.auto">update</property>
   <mapping resource="mapping/Rate.hbm.xml"/>
  </session-factory>
-</hibernate-configuration>
+</hibernate-configuration> 
