@@ -14,19 +14,19 @@ public class RateBLL {
 	public static double getRate(int GivenCreditScore) throws RateException {
 
 		ArrayList<RateDomainModel> rdm = _RateDAL.getAllRates();
-		RateDomainModel rmds = null;
+		RateDomainModel rate_domain_model = null;
 		double finRate = -1.0;
 
 		for (RateDomainModel rates : rdm) {
 
 			if (rates.getiMinCreditScore() == GivenCreditScore) {
 				finRate = rates.getdInterestRate();
-				rmds = rates;
+				rate_domain_model = rates;
 			}
 		}
 
-		if (rmds == null) {
-			throw new RateException(rmds);
+		if (rate_domain_model == null) {
+			throw new RateException(rate_domain_model);
 		}
 
 		else

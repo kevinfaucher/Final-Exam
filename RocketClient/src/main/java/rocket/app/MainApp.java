@@ -36,10 +36,10 @@ public class MainApp extends Application {
 	private Stage primaryStage;
 	private RocketHub rHub = null;
 	private RocketClient rClient = null;
-	private MortgageController rController; 
+	private MortgageController rController;
 	private final int PORT = 9004;
 	private final String COMPUTERNAME = "localhost";
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -51,13 +51,12 @@ public class MainApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
-		// START is executed by the Application framework after INIT
+
 		AnchorPane root = new AnchorPane();
 		Scene scene = new Scene(root, 1300, 500);
 
 		this.primaryStage = primaryStage;
-		
+
 		Screen screen = Screen.getPrimary();
 		Rectangle2D bounds = screen.getVisualBounds();
 
@@ -65,33 +64,33 @@ public class MainApp extends Application {
 		primaryStage.setY(bounds.getMinY());
 		primaryStage.setWidth(bounds.getWidth());
 		primaryStage.setHeight(bounds.getHeight());
-		
+
 		this.primaryStage.setTitle("Rocket");
 		this.primaryStage.setScene(scene);
 		this.primaryStage.show();
-		
+
 		showRocketMenu();
-		
+
 	}
-	
-	public void StartHubAndClient()
-	{
-		//	Start the Hub and Client
-		
+
+	public void StartHubAndClient() {
+		// Start the Hub and Client
+
 		try {
 			rHub = new RocketHub(PORT);
 		} catch (Exception e) {
 			System.out.println("Error: Can't listen on port " + PORT);
 			e.printStackTrace();
 		}
-		
+
 		try {
 			rClient = new RocketClient(COMPUTERNAME, PORT);
 		} catch (IOException e) {
 			System.out.println("Can't Start Client");
 			e.printStackTrace();
-		}	
+		}
 	}
+
 	public void showRocketMenu() {
 		try {
 			// Load person overview.
@@ -147,10 +146,9 @@ public class MainApp extends Application {
 		protected void messageReceived(final Object message) {
 			Platform.runLater(() -> {
 				if (message instanceof LoanRequest) {
-					LoanRequest lq = (LoanRequest)message;
+					LoanRequest lq = (LoanRequest) message;
 					rController.HandleLoanRequestDetails(lq);
-				} 
-				else if (message instanceof Object) {
+				} else if (message instanceof Object) {
 				}
 			});
 		}

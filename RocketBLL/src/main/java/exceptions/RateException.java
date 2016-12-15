@@ -5,14 +5,14 @@ import rocketDomain.RateDomainModel;
 
 public class RateException extends Exception {
 
-	private RateDomainModel rdm;
+	private RateDomainModel rateDomainModel;
 
 	public RateException(RateDomainModel rdm) {
-		this.rdm = rdm;
+		this.rateDomainModel = rdm;
 	}
 
 	public RateDomainModel getRdm() {
-		return rdm;
+		return rateDomainModel;
 	}
 
 }

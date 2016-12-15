@@ -1,13 +1,11 @@
 package rocketBase;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 import exceptions.RateException;
-import rocketDomain.RateDomainModel;
 
 public class rate_test {
 
@@ -17,31 +15,14 @@ public class rate_test {
 	}
 
 	@Test
-	public void testExampleFCP() throws Exception {
-		ArrayList<RateDomainModel> rates = RateDAL.getAllRates();
-		int creditScore = 700;
-		double rate = 0;
-		double paymentDue = 0;
-		final double CONVERSION = (100 * 12);
-		try {
-			rate = RateBLL.getRate(creditScore) / CONVERSION;
-		} catch (RateException e) {
-			throw e;
-		}
-
-		paymentDue = rocketBase.RateBLL.getPayment(rate, 360, 300000, 0, false);
-
-		assertEquals(Math.round(paymentDue * 100.00) / 100.00, 1432.25, .01);
+	public void getRatetest() throws RateException {
+		assertEquals(RateBLL.getRate(700), 4, 1);
 	}
 
 	@Test(expected = RateException.class)
-	public void testRateException() throws Exception {
-		ArrayList<RateDomainModel> rate = RateDAL.getAllRates();
-		int creditScore = 266;
-		try {
-			double rated = RateBLL.getRate(creditScore);
-		} catch (RateException exception) {
-			throw exception;
-		}
+	public void getratetest2() throws RateException {
+		RateBLL.getRate(200);
+
 	}
+
 }
