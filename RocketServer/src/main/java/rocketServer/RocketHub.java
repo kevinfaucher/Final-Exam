@@ -30,16 +30,16 @@ public class RocketHub extends Hub {
 			} catch (RateException exception) {
 				sendToAll(exception);
 			}
-			final double CONVERSION = (100 * 12);
-			final double FACTOR12 = 12;
+			final double cnvrt = (100 * 12);
+			final double fac12 = 12;
 
-			double rate = lq.getdRate() / CONVERSION;
-			double numPer = (double) lq.getiTerm() * FACTOR12;
-			double principleAmt = lq.getdAmount();
+			double rate = lq.getdRate() / cnvrt;
+			double numPer = (double) lq.getiTerm() * fac12;
+			double principleAmountt = lq.getdAmount();
 			double futureValue = 0;
 			boolean tr = false;
 
-			double paymentDue = RateBLL.getPayment(rate, numPer, principleAmt, futureValue, tr);
+			double paymentDue = RateBLL.getPayment(rate, numPer, principleAmountt, futureValue, tr);
 			lq.setdPayment(paymentDue);
 
 			sendToAll(lq);
