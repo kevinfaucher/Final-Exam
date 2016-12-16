@@ -36,10 +36,10 @@ public class RocketHub extends Hub {
 			double rate = lq.getdRate() / CONVERSION;
 			double numPer = (double) lq.getiTerm() * FACTOR12;
 			double principleAmt = lq.getdAmount();
-			double futVal = 0;
+			double futureValue = 0;
 			boolean tr = false;
 
-			double paymentDue = RateBLL.getPayment(rate, numPer, principleAmt, futVal, tr);
+			double paymentDue = RateBLL.getPayment(rate, numPer, principleAmt, futureValue, tr);
 			lq.setdPayment(paymentDue);
 
 			sendToAll(lq);
